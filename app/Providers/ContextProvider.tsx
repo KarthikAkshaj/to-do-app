@@ -12,7 +12,7 @@ function ContextProvider({ children }: Props) {
   React.useEffect(() => {
     setTimeout(() => {
       setIsReady(true);
-    }, 250);
+    }, 200);
   }, []);
 
   if (!isReady) {

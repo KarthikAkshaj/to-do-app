@@ -22,3 +22,30 @@ body {
   color: #ffd166;
   height: 100vh;
 }
+
+.hello {
+  width: 20rem;
+  position: relative;
+  background-color: #022836;
+  border: 0.13rem solid #f48c06;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #c99c08;
+
+}
+
+.hello1 {
+  margin: 2rem;
+  padding: 1.2rem 1rem;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #ccff33;
+  display: flex;
+  align-items: center;
+
+
+}
