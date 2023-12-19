@@ -11,19 +11,19 @@ const Menu = [
     id: 2,
     title: "Important!",
     icon: list,
-    link: "/important",
+    link: "/Important",
   },
   {
     id: 3,
     title: "Completed!",
     icon: check,
-    link: "/completed",
+    link: "/Completed",
   },
   {
     id: 4,
     title: "Incomplete",
     icon: todo,
-    link: "/incomplete",
+    link: "/Incomplete",
   },
 ];
 
