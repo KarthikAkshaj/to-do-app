@@ -165,7 +165,7 @@ const SidebarStyled = styled.nav`
       content: "";
       right: 0;
       top: 0;
-      width: %;
+      width: 0%;
       height: 100%;
       background-color: #00b4d8;
       border-bottom-left-radius: 5px;
