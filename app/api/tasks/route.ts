@@ -1,3 +1,4 @@
+import prisma from "@/app/Utils/connect";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
@@ -23,8 +24,18 @@ export async function POST(req: Request) {
         status: 400,
       });
     }
+    const task = await prisma.task.create({
+      data: {
+        title,
+        description,
+        date,
+        isCompleted: completed,
+        isImportant: important,
+        userId,
+      },
+    });
 
-    
+    return NextResponse.json(task);
   } catch (error) {
     console.log("ERROR CREATING TASK, error :", error);
     return NextResponse.json({ error: "Error creating task", status: 500 });
@@ -33,6 +44,19 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
+    const { userId } = auth();
+
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized", status: 401 });
+    }
+
+    const tasks = await prisma.task.findMany({
+      where: {
+        userId,
+      },
+    });
+
+    return NextResponse.json(tasks);
   } catch (error) {
     console.log("ERROR GETTING TASK, error :", error);
     return NextResponse.json({ error: "Error updating task", status: 500 });
