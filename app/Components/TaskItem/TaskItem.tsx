@@ -26,7 +26,7 @@ function TaskItem({ title, description, date, isCompleted, id }: Props) {
         {isCompleted ? (
           <button className="completed">Completed</button>
         ) : (
-          <button className="Incomplete">InComplete</button>
+          <button className="Incomplete">Incomplete</button>
         )}
         <button className="edit">{edit}</button>
         <button
@@ -46,7 +46,7 @@ const TaskItemStyled = styled.div`
   padding: 1.2rem 1rem;
   border-radius: 1rem;
   background-color: #073b4c;
-  box-shadow: -1rem 1rem 2rem #00bbf9;
+  box-shadow: -1rem 1rem 2rem #014b63;
   border: 2px solid #fb8728;
   height: 16rem;
   display: flex;

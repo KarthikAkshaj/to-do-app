@@ -15,7 +15,7 @@ function Tasks({ title, tasks }: Props) {
   const { isLoading } = useGlobalState();
   return (
     <TasksStyled>
-      < CreateContent />
+      {/* < CreateContent /> */}
       <h1>{title}</h1>
       <div className="tasks grid">
         {tasks.map((task) => (

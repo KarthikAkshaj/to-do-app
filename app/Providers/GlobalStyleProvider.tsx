@@ -19,7 +19,7 @@ const GlobalStyles = styled.div`
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 2fr));
+    grid-template-columns: repeat(auto-fill, minmax(22rem, 2fr));
     gap: 4rem;
   }
 `;
