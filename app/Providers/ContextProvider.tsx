@@ -13,7 +13,7 @@ function ContextProvider({ children }: Props) {
   React.useEffect(() => {
     setTimeout(() => {
       setIsReady(true);
-    }, 200);
+    }, 2000);
   }, []);
 
   if (!isReady) {

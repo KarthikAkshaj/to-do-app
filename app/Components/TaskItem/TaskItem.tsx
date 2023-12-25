@@ -2,6 +2,7 @@
 
 import formatDate from "@/app/Utils/FormatDate";
 import { edit, trash } from "@/app/Utils/Icons";
+import { useGlobalState } from "@/app/context/globalContextProvider";
 import React from "react";
 import styled from "styled-components";
 
@@ -14,6 +15,8 @@ interface Props {
 }
 
 function TaskItem({ title, description, date, isCompleted, id }: Props) {
+  const { deleteTask } = useGlobalState();
+
   return (
     <TaskItemStyled>
       <h1>{title}</h1>
@@ -28,9 +31,9 @@ function TaskItem({ title, description, date, isCompleted, id }: Props) {
         <button className="edit">{edit}</button>
         <button
           className="delete"
-          // onClick={() => {
-          //   deleteTask(id);
-          // }}
+          onClick={() => {
+            deleteTask(id);
+          }}
         >
           {trash}
         </button>
@@ -83,7 +86,7 @@ const TaskItemStyled = styled.div`
     .Incomplete {
       display: inline-block;
       padding: 0.4rem 1rem;
-      background:#ef476f;
+      background: #ef476f;
       border-radius: 30px;
     }
 

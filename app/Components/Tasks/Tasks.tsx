@@ -5,14 +5,17 @@ import styled from "styled-components";
 import CreateContent from "../Models/CreateContent";
 import TaskItem from "../TaskItem/TaskItem";
 import { add } from "@/app/Utils/Icons";
+import { useGlobalState } from "@/app/context/globalContextProvider";
 interface Props {
   title: string;
   tasks: any[];
 }
 
 function Tasks({ title, tasks }: Props) {
+  const { isLoading } = useGlobalState();
   return (
     <TasksStyled>
+      < CreateContent />
       <h1>{title}</h1>
       <div className="tasks grid">
         {tasks.map((task) => (

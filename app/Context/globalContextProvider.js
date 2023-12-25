@@ -10,16 +10,13 @@ const GlobalUpdateContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
     const { user } = useUser();
-
     const [selectedTheme, setSelectedTheme] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-    const [modal, setModal] = useState(false);
+    const [model, setModel] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
-
     const [tasks, setTasks] = useState([]);
 
     const theme = themes[selectedTheme];
-
     const setGlobalState = (newThemeIndex) => {
         setSelectedTheme(newThemeIndex);
     };
@@ -41,6 +38,18 @@ export const GlobalProvider = ({ children }) => {
         }
     };
 
+    const deleteTask = async (id) => {
+        try {
+            const res = await axios.delete(`/api/tasks/${id}`);
+            toast.success("Task Successfully Deleted");
+
+            allTasks();
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong");
+        }
+    };
+
     React.useEffect(() => {
         if (user) allTasks();
     }, [user]);
@@ -50,6 +59,8 @@ export const GlobalProvider = ({ children }) => {
             {
                 theme,
                 tasks,
+                deleteTask,
+                isLoading,
             }}>
             <GlobalUpdateContext.Provider value={{}}>
                 {children}
