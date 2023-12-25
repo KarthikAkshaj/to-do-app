@@ -7,12 +7,17 @@ import styled from "styled-components";
 import Menu from "@/app/Utils/Menu";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Button from "../Button/Button";
+import { logout } from "@/app/Utils/Icons";
+import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 
 function Sidebar() {
   const { theme } = useGlobalState();
 
   const router = useRouter();
   const pathname = usePathname();
+  const { signOut } = useClerk();
+  const { user } = useUser();
 
   const handleClick = (link: string) => {
     router.push(link);
@@ -53,7 +58,20 @@ function Sidebar() {
           );
         })}
       </ul>
-      <button>hello</button>
+      <div className="sign-out relative m-6">
+        <Button
+          name={"Sign Out"}
+          type={"submit"}
+          padding={"0.4rem 0.8rem"}
+          borderRad={"0.8rem"}
+          fw={"500"}
+          fs={"1.2rem"}
+          icon={logout}
+          click={() => {
+            signOut(() => router.push("/Signin"));
+          }}
+        />
+      </div>
     </SidebarStyled>
   );
 }
@@ -155,7 +173,7 @@ const SidebarStyled = styled.nav`
       top: 0;
       width: 0;
       height: 100%;
-      background-color: #0e4143;
+      background-color: #335c67;
       z-index: 1;
       transition: all 0.3s ease-in-out;
     }
@@ -209,8 +227,7 @@ const SidebarStyled = styled.nav`
     width: 0.5rem;
   }
 
-  button{
-
+  button {
   }
 `;
 

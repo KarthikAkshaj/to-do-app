@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <>
-      <Tasks tasks={tasks} title={""}/>
+      <Tasks tasks={tasks} title="All Tasks"/>
     </>
   );
 }

@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import GlobalStyleProvider from "./Providers/GlobalStyleProvider";
 import ContextProvider from "./Providers/ContextProvider";
 import { ClerkProvider, auth } from "@clerk/nextjs";
+import NextTopLoader from "nextjs-toploader";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito_sans = Nunito_Sans({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,7 +36,12 @@ export default function RootLayout({
             referrerPolicy="no-referrer"
           />
         </head>
-        <body className={inter.className}>
+        <body className={nunito_sans.className}>
+          <NextTopLoader 
+          height={4}
+          color="#118ab2"
+          easing="cubic-bezier(0.53,0.21,0,1)"
+          />
           <ContextProvider>
             <GlobalStyleProvider>
               {userId && <Sidebar />}

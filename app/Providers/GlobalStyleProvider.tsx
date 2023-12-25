@@ -16,6 +16,12 @@ const GlobalStyles = styled.div`
   display: flex;
   gap: 3rem;
   height: 100%;
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 2fr));
+    gap: 4rem;
+  }
 `;
 
 export default GlobalStyleProvider;
