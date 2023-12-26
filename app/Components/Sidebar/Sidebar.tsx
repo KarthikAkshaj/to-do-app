@@ -18,6 +18,11 @@ function Sidebar() {
   const pathname = usePathname();
   const { signOut } = useClerk();
   const { user } = useUser();
+  const { firstName, lastName, imageUrl } = user || {
+    firstName: "",
+    lastName: "",
+    imageUrl: "",
+  };
 
   const handleClick = (link: string) => {
     router.push(link);
@@ -27,17 +32,14 @@ function Sidebar() {
     <SidebarStyled theme={theme}>
       <div className="Profile">
         <div className="Profile-overlay">
-          <div className="image">
-            <Image
-              width={80}
-              height={80}
-              src="/Avatar1.png"
-              alt="Profile Image"
-            />
+          <div className="user-btn absolute z-20 top-0 w-full h-full">
+            <UserButton />
           </div>
-          <h1>
-            <span>Yuji</span>
-            <span>Itadori</span>
+          <div className="image">
+            <Image width={80} height={80} src={imageUrl} alt="Profile Image" />
+          </div>
+          <h1 className="captalize">
+            {firstName} {lastName}
           </h1>
         </div>
       </div>
@@ -89,7 +91,7 @@ const SidebarStyled = styled.nav`
 
   .Profile {
     margin: 1.5rem;
-    padding: 1rem 0.8rem;
+    padding: 1rem 1rem;
     position: relative;
     border-radius: 1rem;
     cursor: pointer;
@@ -113,6 +115,7 @@ const SidebarStyled = styled.nav`
       display: flex;
       align-items: centre;
       opacity: 0.6;
+      padding: 0.5rem 3rem 0.5rem 1.5rem;
     }
 
     .image {
@@ -123,6 +126,7 @@ const SidebarStyled = styled.nav`
       border-radius: 100%;
       width: 70px;
       height: 70px;
+      margin-right: 1.3rem;
 
       img {
         border-radius: 100%;
@@ -130,13 +134,14 @@ const SidebarStyled = styled.nav`
       }
     }
 
-    h1 {
+   > h1 {
       font-size: 1.2rem;
       line-height: 1.4rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-left: 1rem;
+      left: 1rem;
       padding-bottom: 1rem;
       margin-top: 1rem;
     }
@@ -227,7 +232,22 @@ const SidebarStyled = styled.nav`
     width: 0.5rem;
   }
 
-  button {
+  .user-btn {
+    .cl-rootBox {
+      width: 100%;
+      height: 100%;
+
+      .cl-userButtonBox {
+        width: 100%;
+        height: 100%;
+
+        .cl-userButtonTrigger {
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+        }
+      }
+    }
   }
 `;
 
