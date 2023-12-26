@@ -6,16 +6,17 @@ import CreateContent from "../Models/CreateContent";
 import TaskItem from "../TaskItem/TaskItem";
 import { add } from "@/app/Utils/Icons";
 import { useGlobalState } from "@/app/context/globalContextProvider";
+import Model from "../Models/Model";
 interface Props {
   title: string;
   tasks: any[];
 }
 
 function Tasks({ title, tasks }: Props) {
-  const { isLoading } = useGlobalState();
+  const { isLoading, openModel, model } = useGlobalState();
   return (
     <TasksStyled>
-      {/* < CreateContent /> */}
+      {model && <Model content={<CreateContent />} />}
       <h1>{title}</h1>
       <div className="tasks grid">
         {tasks.map((task) => (
@@ -28,7 +29,7 @@ function Tasks({ title, tasks }: Props) {
             id={task.id}
           />
         ))}
-        <button className="create-task">
+        <button className="create-task" onClick={openModel}>
           {add}
           Add New Task
         </button>
