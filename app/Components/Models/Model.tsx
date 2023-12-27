@@ -37,25 +37,22 @@ align-items: center;
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.45);
-    filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.6);
+    filter: blur(2rem);
 }
 
 .model-content {
     margin: 0 1rem;
-
     padding: 2rem;
     position: relative;
     max-width: 630px;
     width: 100%;
     z-index: 100;
-
     border-radius: 1rem;
-    background-color: violet;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-    border-radius: 1rem;
-
-    @media screen and (max-width: 450px) {
+    background-color: #073b4c;
+    box-shadow: -1rem 1rem 1rem #726113;
+    
+    @media screen and (max-width: 500px) {
         font-size: 90%;
     }
 }

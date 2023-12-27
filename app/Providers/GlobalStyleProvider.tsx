@@ -12,10 +12,16 @@ function GlobalStyleProvider({ children }: Props) {
 }
 
 const GlobalStyles = styled.div`
-  padding: 3rem;
+  padding: 2.5rem;
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
   height: 100%;
+  transition: all 0.3s ease-in-out;
+
+  @media screen and (max-width: 780px) {
+    padding: 1rem;
+    gap: 1rem;
+  }
 
   .grid {
     display: grid;

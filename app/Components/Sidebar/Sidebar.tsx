@@ -8,11 +8,11 @@ import Menu from "@/app/Utils/Menu";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Button from "../Button/Button";
-import { logout } from "@/app/Utils/Icons";
+import { arrowLeft, bars, logout } from "@/app/Utils/Icons";
 import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 
 function Sidebar() {
-  const { theme } = useGlobalState();
+  const { theme, collapsed, collapseMenu } = useGlobalState();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -29,7 +29,10 @@ function Sidebar() {
   };
 
   return (
-    <SidebarStyled theme={theme}>
+    <SidebarStyled theme={theme} collapsed={collapsed}>
+      <button className="toggle-nav" onClick={collapseMenu}>
+        {collapsed ? bars : arrowLeft}
+      </button>
       <div className="Profile">
         <div className="Profile-overlay">
           <div className="user-btn absolute z-20 top-0 w-full h-full">
@@ -78,7 +81,7 @@ function Sidebar() {
   );
 }
 
-const SidebarStyled = styled.nav`
+const SidebarStyled = styled.nav<{ collapsed: boolean }>`
   width: 20rem;
   position: relative;
   background-color: #022836;
@@ -134,7 +137,7 @@ const SidebarStyled = styled.nav`
       }
     }
 
-   > h1 {
+    > h1 {
       font-size: 1.2rem;
       line-height: 1.4rem;
       display: flex;
@@ -248,6 +251,35 @@ const SidebarStyled = styled.nav`
         }
       }
     }
+  }
+
+  @media screen and (max-width: 780px) {
+    position: fixed;
+    height: calc(100vh - 2rem);
+    z-index: 200;
+    transition: all 0.3s cubic-bezier(0.53, 0.21, 0, 1);
+    transform: ${(props) =>
+      props.collapsed ? "translateX(-107%)" : "translateX(0)"};
+    .toggle-nav {
+      display: block !important;
+    }
+  }
+
+  .toggle-nav {
+    display: none;
+    padding: 0.8rem 0.9rem;
+    position: absolute;
+    right: -49px;
+    top: 1.8rem;
+
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    background-color: #022836;
+    border-right: 2px solid #f48c06;
+    border-top: 2px solid #f48c06;
+    border-bottom: 2px solid #f48c06;
+    border-left: 3px solid #022836;
   }
 `;
 

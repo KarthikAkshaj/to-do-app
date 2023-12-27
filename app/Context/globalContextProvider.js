@@ -37,12 +37,12 @@ export const GlobalProvider = ({ children }) => {
         setIsLoading(true);
         try {
             const res = await axios.get("/api/tasks");
-            // const sorted = res.data.sort((a, b) => {
-            //     return (
-            //         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-            //     );
-            // });
-            setTasks(res.data);
+            const sorted = res.data.sort((a, b) => {
+                return (
+                    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                );
+            });
+            setTasks(sorted);
             setIsLoading(false);
 
         } catch (error) {
@@ -95,6 +95,9 @@ export const GlobalProvider = ({ children }) => {
                 model,
                 openModel,
                 closeModel,
+                allTasks,
+                collapsed,
+                collapseMenu,
             }}>
             <GlobalUpdateContext.Provider value={{}}>
                 {children}
